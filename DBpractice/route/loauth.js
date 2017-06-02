@@ -7,12 +7,12 @@ router.get('/', (req,res)=>{
 
 
 router.post('/', (req,res)=>{
-  Users.findOne({id: req.body.id, passwd: req.body.passwd}, (err, user)=>{
+  Users.findOne({user_name: req.body.user_name, passwd: req.body.passwd}, (err, user)=>{
   if(err) res.status(500).send("DB ERR");
-  if(users) res.status(200).send(user);
+  if(user) res.status(200).send(user);
   else res.status(404).send("user not fond");
   })
-  console.log('ID : ' + id + '\nPW : ' + passwd + '\nlogined!');
+  console.log('ID : ' + req.body.user_name + '\nPW : ' + req.body.passwd + '\nlogined!');
 });
 
 module.exports = router;
