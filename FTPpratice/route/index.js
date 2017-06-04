@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
-
+var Q = require('Q');
+var multer = require('multer');
+var imagePath = "./files";
 var upload = function (req, res) {
   var deferred = Q.defer();
   var storage = multer.diskStorage({

@@ -3,7 +3,6 @@ var app = express();
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({limit: '1gb', extended: false }));
-require('./mongo');
 
 app.get('/', (req,res)=>{
   res.send('아마도 메인페이지');
