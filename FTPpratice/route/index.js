@@ -1,8 +1,8 @@
 var express = require('express');
 var router = express.Router();
-var Q = require('Q');
+var Q = require('q');
 var multer = require('multer');
-var imagePath = "./files";
+var imagePath = './public';
 var upload = function (req, res) {
   var deferred = Q.defer();
   var storage = multer.diskStorage({
@@ -28,15 +28,19 @@ var upload = function (req, res) {
   });
   return deferred.promise;
 };
-router.get('/', (req,res)=>{
-  res.send('이미지 쑤시기!');
+/* Create new image */
+router.post('/', function(req, res, next) {
+  res.send('test');
 });
+
 router.post('/:filename', function(req, res, next) {
   upload(req, res).then(function (file) {
-      res.json(file);
-    }, function (err) {
-      res.send(500, err);
-    });
+   res.status(200).json(file);
+  }, function (err) {
+   res.status(500).send(err);
+  });
+ console.log(req.params.filename);
 });
+
 
 module.exports = router;
